@@ -1,16 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-
 contract SopdapAI is ERC20 {
     using SafeMath for uint256;
     address private _owner;
     uint256 private _treasuryLocked;
     uint256 private _devLocked;
-    uint256 private _vestingStart;
     uint256 private _vestingDuration;
     uint256 private _vestingCliff;
     uint256 private _treasuryvestingCliff;
@@ -26,7 +21,7 @@ contract SopdapAI is ERC20 {
         _owner = msg.sender;
         uint256 totalSupply = 840_000_000 * 10**decimals();    
         _treasuryLocked = totalSupply * 30 / 100;
-        _devLocked = totalSupply * 40 / 100;
+        __devLocked = totalSupply * 40 / 100;
         _vestingStart = block.timestamp;
         _vestingDuration = 1460 days;
         _vestingCliff = 365 days;
